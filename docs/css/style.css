@@ -724,14 +724,16 @@ button {
 .spin-btn::before {
     content: "";
     position: absolute;
-    left: 1rem;
+    left: 0.85rem;
     top: 50%;
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 1.9rem;
+    height: 1.9rem;
     border-radius: 50%;
     translate: 0 -50%;
-    background: #fff7d1;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.65);
+    background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.55), transparent 25%),
+        url("../spin-badge.png") center / cover no-repeat;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.32);
 }
 
 .progress-list {
@@ -1289,4 +1291,42 @@ button {
     .guide-card {
         padding: 0.65rem;
     }
+}
+
+.card-art-girl {
+    background-image:
+        linear-gradient(180deg, rgba(255, 124, 201, 0.12), rgba(91, 195, 255, 0.1)),
+        url("../gacha-card.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+.card-art-girl::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, transparent 0 65%, rgba(0, 0, 0, 0.18) 100%),
+        radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.16), transparent 26%);
+    pointer-events: none;
+}
+
+.card-art-treasure {
+    background-image:
+        linear-gradient(180deg, rgba(91, 195, 255, 0.15), rgba(185, 108, 255, 0.08)),
+        url("../treasure-box.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.card-art-treasure::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, transparent 0 60%, rgba(0, 0, 0, 0.2) 100%),
+        radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.15), transparent 28%);
+    pointer-events: none;
 }
