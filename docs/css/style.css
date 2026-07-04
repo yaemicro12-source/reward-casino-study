@@ -31,6 +31,8 @@ body {
     color: var(--text);
     font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
     background:
+        linear-gradient(180deg, rgba(5, 8, 20, 0.34), rgba(5, 8, 20, 0.76)),
+        url("../casino-background.png") center center / cover fixed no-repeat,
         radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.08), transparent 18%),
         radial-gradient(circle at 80% 12%, rgba(185, 108, 255, 0.18), transparent 16%),
         radial-gradient(circle at 65% 72%, rgba(91, 195, 255, 0.1), transparent 20%),
