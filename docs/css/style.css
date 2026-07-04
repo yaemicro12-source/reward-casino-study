@@ -376,6 +376,8 @@ button {
     align-content: start;
     gap: 1rem;
     padding: 1rem;
+    overflow: visible;
+    z-index: 2;
 }
 
 .stage-panel::before {
@@ -395,6 +397,8 @@ button {
     display: grid;
     place-items: end center;
     min-height: 0;
+    width: 100%;
+    z-index: 3;
     isolation: isolate;
     filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.46));
 }
@@ -414,10 +418,13 @@ button {
 }
 
 .main-girl {
-    width: min(100%, 44rem);
+    width: min(118%, 50rem);
     height: auto;
     max-height: 100%;
     object-fit: contain;
+    translate: -6% 0;
+    position: relative;
+    z-index: 3;
     transform-origin: 50% 82%;
     filter: saturate(1.04) contrast(1.03);
     animation:
@@ -1243,6 +1250,7 @@ button {
 
     .main-girl {
         width: 100%;
+        translate: 0 0;
         max-height: 42rem;
     }
 
