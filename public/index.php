@@ -26,61 +26,61 @@ function render_layout(string $title, string $content, array $nav = []): void
     $success = flash('success');
     $error = flash('error');
     ?>
-<!doctype html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= h($title) ?> | <?= h(config_value('app_name')) ?></title>
-    <link rel="stylesheet" href="assets/css/app.css">
-</head>
-<body class="app-shell">
-<div class="app-grid">
-    <aside class="sidebar">
-        <div class="brand">
-            <div class="brand-mark">RC</div>
-            <div>
-                <h1><?= h(config_value('app_name')) ?></h1>
-                <p>ネイビーとゴールドの学習ゲーミフィケーション</p>
-            </div>
+    <!doctype html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><?= h($title) ?> | <?= h(config_value('app_name')) ?></title>
+        <link rel="stylesheet" href="assets/css/app.css">
+    </head>
+    <body class="app-shell">
+        <div class="app-grid">
+            <aside class="sidebar">
+                <div class="brand">
+                    <div class="brand-mark">RC</div>
+                    <div>
+                        <h1><?= h(config_value('app_name')) ?></h1>
+                        <p>ゲーミフィケーション</p>
+                    </div>
+                </div>
+                <?php if ($user): ?>
+                    <div class="balance-card">
+                        <div class="balance-label">💰 残高</div>
+                        <div class="balance-value"><?= h(balance_label($balance)) ?></div>
+                    </div>
+                <?php endif; ?>
+                <nav class="nav-list">
+                    <?php foreach ($nav as $item): ?>
+                        <a class="nav-link" href="<?= h($item['href']) ?>"><?= h($item['label']) ?></a>
+                    <?php endforeach; ?>
+                </nav>
+                <?php if ($user): ?>
+                    <form method="post" class="logout-form">
+                        <input type="hidden" name="action" value="logout">
+                        <button type="submit" class="btn btn-ghost">ログアウト</button>
+                    </form>
+                <?php endif; ?>
+            </aside>
+            <main class="main-panel">
+                <?php if ($success): ?>
+                    <div class="notice notice-success">✓ <?= h($success) ?></div>
+                <?php endif; ?>
+                <?php if ($error): ?>
+                    <div class="notice notice-error">✕ <?= h($error) ?></div>
+                <?php endif; ?>
+                <?= $content ?>
+            </main>
         </div>
-        <?php if ($user): ?>
-            <div class="balance-card">
-                <div class="balance-label">残高</div>
-                <div class="balance-value"><?= h(balance_label($balance)) ?></div>
-            </div>
-        <?php endif; ?>
-        <nav class="nav-list">
-            <?php foreach ($nav as $item): ?>
-                <a class="nav-link" href="<?= h($item['href']) ?>"><?= h($item['label']) ?></a>
-            <?php endforeach; ?>
-        </nav>
-        <?php if ($user): ?>
-            <form method="post" class="logout-form">
-                <input type="hidden" name="action" value="logout">
-                <button type="submit" class="btn btn-ghost">ログアウト</button>
-            </form>
-        <?php endif; ?>
-    </aside>
-    <main class="main-panel">
-        <?php if ($success): ?>
-            <div class="notice notice-success"><?= h($success) ?></div>
-        <?php endif; ?>
-        <?php if ($error): ?>
-            <div class="notice notice-error"><?= h($error) ?></div>
-        <?php endif; ?>
-        <?= $content ?>
-    </main>
-</div>
-<script src="assets/js/app.js"></script>
-</body>
-</html>
+        <script src="assets/js/app.js"></script>
+    </body>
+    </html>
     <?php
 }
 
 function render_card(string $title, string $body, string $foot = ''): string
 {
-    return '<section class="card"><h2>' . h($title) . '</h2><p>' . $body . '</p>' . ($foot !== '' ? '<div class="card-foot">' . $foot . '</div>' : '') . '</section>';
+    return '<section class="card"><h3>' . h($title) . '</h3><p>' . $body . '</p>' . ($foot !== '' ? '<div class="card-foot">' . $foot . '</div>' : '') . '</section>';
 }
 
 if ($action === 'logout') {
@@ -288,7 +288,7 @@ if ($action === 'spin-slot') {
         ->execute([(int) $user['id'], $bet, $won ? 'win' : 'lose', $delta, $before, $after, $won ? '当たり' : '外れ']);
     db()->commit();
 
-    flash('success', $won ? '当たりです。ゲームポイントが増えました。' : '外れです。ゲームポイントが減りました。');
+    flash('success', $won ? '🎉 当たりです。ゲームポイントが増えました。' : '😢 外れです。ゲームポイントが減りました。');
     redirect_to('slot');
 }
 
@@ -398,15 +398,16 @@ if ($action === 'save-game-settings') {
 if ($page === 'login') {
     $content = '
         <section class="hero">
-            <h2>ログイン</h2>
-            <form method="post" class="form-panel">
-                <input type="hidden" name="action" value="login">
-                <label>メールアドレス<input type="email" name="email" required></label>
-                <label>パスワード<input type="password" name="password" required></label>
-                <button class="btn btn-primary" type="submit">ログイン</button>
-                <p class="muted">初期管理者: admin@example.com / password123</p>
-            </form>
+            <h2>⭐ ログイン</h2>
+            <p>アカウントにログインしてゲームを始めましょう</p>
         </section>
+        <form method="post" class="form-panel">
+            <input type="hidden" name="action" value="login">
+            <label>メールアドレス<input type="email" name="email" required></label>
+            <label>パスワード<input type="password" name="password" required></label>
+            <button class="btn btn-primary" type="submit">ログイン</button>
+            <p class="muted" style="text-align: center; font-size: 0.85rem;">初期管理者: admin@example.com / password123</p>
+        </form>
     ';
     render_layout('ログイン', $content, [
         ['label' => '新規登録', 'href' => url('register')],
@@ -417,21 +418,22 @@ if ($page === 'login') {
 if ($page === 'register') {
     $content = '
         <section class="hero">
-            <h2>新規登録</h2>
-            <form method="post" class="form-panel">
-                <input type="hidden" name="action" value="register">
-                <label>名前<input type="text" name="name" required></label>
-                <label>メールアドレス<input type="email" name="email" required></label>
-                <label>パスワード<input type="password" name="password" required></label>
-                <label>ロール
-                    <select name="role">
-                        <option value="learner">学習者</option>
-                        <option value="admin">管理者</option>
-                    </select>
-                </label>
-                <button class="btn btn-primary" type="submit">登録する</button>
-            </form>
+            <h2>🎮 新規登録</h2>
+            <p>新しいアカウントを作成してゲームの世界へ</p>
         </section>
+        <form method="post" class="form-panel">
+            <input type="hidden" name="action" value="register">
+            <label>名前<input type="text" name="name" required></label>
+            <label>メールアドレス<input type="email" name="email" required></label>
+            <label>パスワード<input type="password" name="password" required></label>
+            <label>ロール
+                <select name="role">
+                    <option value="learner">🎓 学習者</option>
+                    <option value="admin">👑 管理者</option>
+                </select>
+            </label>
+            <button class="btn btn-primary" type="submit">登録する</button>
+        </form>
     ';
     render_layout('新規登録', $content, [
         ['label' => 'ログイン', 'href' => url('login')],
@@ -444,28 +446,28 @@ if (!current_user()) {
 }
 
 $navCommon = [
-    ['label' => 'ダッシュボード', 'href' => url('dashboard')],
-    ['label' => 'ポイント履歴', 'href' => url('point-history')],
+    ['label' => '🏠 ダッシュボード', 'href' => url('dashboard')],
+    ['label' => '📊 ポイント履歴', 'href' => url('point-history')],
 ];
 
 $learnerNav = [
-    ['label' => '勉強タイマー', 'href' => url('study-timer')],
-    ['label' => '学習ログ登録', 'href' => url('study-log-create')],
-    ['label' => '学習ログ一覧', 'href' => url('study-log-list')],
-    ['label' => 'スロット', 'href' => url('slot')],
-    ['label' => 'ご褒美一覧', 'href' => url('rewards')],
-    ['label' => '交換申請', 'href' => url('reward-request')],
-    ['label' => 'ガチャメニュー', 'href' => url('gacha-menu')],
+    ['label' => '⏱️ 勉強タイマー', 'href' => url('study-timer')],
+    ['label' => '📝 学習ログ登録', 'href' => url('study-log-create')],
+    ['label' => '📚 学習ログ一覧', 'href' => url('study-log-list')],
+    ['label' => '🎰 スロット', 'href' => url('slot')],
+    ['label' => '🎁 ご褒美一覧', 'href' => url('rewards')],
+    ['label' => '💳 交換申請', 'href' => url('reward-request')],
+    ['label' => '🎰 ガチャメニュー', 'href' => url('gacha-menu')],
 ];
 
 $adminNav = [
-    ['label' => '管理者ダッシュボード', 'href' => url('admin-dashboard')],
-    ['label' => 'ポイント調整', 'href' => url('admin-point-adjust')],
-    ['label' => 'ユーザー一覧', 'href' => url('admin-users')],
-    ['label' => '学習ログ承認', 'href' => url('admin-study-reviews')],
-    ['label' => 'ご褒美管理', 'href' => url('admin-rewards')],
-    ['label' => '交換申請承認', 'href' => url('admin-reward-requests')],
-    ['label' => 'ゲーム設定', 'href' => url('admin-game-settings')],
+    ['label' => '👑 管理者ダッシュボード', 'href' => url('admin-dashboard')],
+    ['label' => '💰 ポイント調整', 'href' => url('admin-point-adjust')],
+    ['label' => '👥 ユーザー一覧', 'href' => url('admin-users')],
+    ['label' => '✅ 学習ログ承認', 'href' => url('admin-study-reviews')],
+    ['label' => '🎁 ご褒美管理', 'href' => url('admin-rewards')],
+    ['label' => '💳 交換申請承認', 'href' => url('admin-reward-requests')],
+    ['label' => '⚙️ ゲーム設定', 'href' => url('admin-game-settings')],
 ];
 
 $nav = array_merge($navCommon, is_admin() ? $adminNav : $learnerNav);
@@ -473,12 +475,12 @@ $nav = array_merge($navCommon, is_admin() ? $adminNav : $learnerNav);
 switch ($page) {
     case 'dashboard':
         $content = '';
-        $content .= '<section class="hero"><h2>ダッシュボード</h2><p>役割に応じた操作をここから始めます。</p></section>';
+        $content .= '<section class="hero"><h2>🎮 ダッシュボード</h2><p>君の冒険がここから始まる。役割に応じた操作をここから始めます。</p></section>';
         $content .= '<div class="grid">';
-        $content .= render_card('ゲームポイント', 'ゲームのスロットで使うポイントです。');
-        $content .= render_card('交換ポイント', 'ご褒美と交換するポイントです。');
-        $content .= render_card('学習ログ', '勉強時間や正答率を登録して承認できます。');
-        $content .= render_card('ご褒美', '交換申請と承認を管理します。');
+        $content .= render_card('💎 ゲームポイント', 'ゲームのスロットで使うポイント。勉強をしてポイントを稼ごう。');
+        $content .= render_card('✨ 交換ポイント', 'ご褒美と交換するポイント。学習ログの承認でゲット。');
+        $content .= render_card('📚 学習ログ', '勉強時間や正答率を登録して承認できます。');
+        $content .= render_card('🎁 ご褒美', '交換申請と承認を管理します。');
         $content .= '</div>';
         render_layout('ダッシュボード', $content, $nav);
         break;
@@ -489,14 +491,14 @@ switch ($page) {
         $rows = $stmt->fetchAll();
         $items = '';
         foreach ($rows as $row) {
-            $items .= '<li><span>' . h($row['created_at']) . '</span><strong>' . h($row['user_name']) . '</strong><span>' . h(money_label($row['point_type'])) . '</span><span>' . h((string) $row['amount']) . '</span><span>' . h($row['comment'] ?? '') . '</span></li>';
+            $items .= '<li><span>' . h($row['created_at']) . '</span><strong>' . h($row['user_name']) . '</strong><span>' . h(money_label($row['point_type'])) . '</span><span>' . h((string) $row['amount']) . '</span><span class="muted">' . h($row['comment'] ?? '') . '</span></li>';
         }
-        $content = '<section class="hero"><h2>ポイント履歴</h2><p>付与・減算の流れを一覧で確認します。</p></section><ul class="history-list">' . $items . '</ul>';
+        $content = '<section class="hero"><h2>📊 ポイント履歴</h2><p>付与・減算の流れを一覧で確認します。</p></section><ul class="history-list">' . $items . '</ul>';
         render_layout('ポイント履歴', $content, $nav);
         break;
 
     case 'study-timer':
-        $content = '<section class="hero"><h2>勉強タイマー</h2><p>学習時間を測って、終了後にログ登録へつなげます。</p></section>
+        $content = '<section class="hero"><h2>⏱️ 勉強タイマー</h2><p>学習時間を測って、終了後にログ登録へつなげます。</p></section>
         <section class="card timer-card">
             <div class="timer-display" id="timer-display">25:00</div>
             <div class="timer-actions">
@@ -505,24 +507,24 @@ switch ($page) {
                 <button type="button" class="btn btn-secondary" data-timer="50">50分</button>
             </div>
             <div class="timer-actions">
-                <button type="button" class="btn btn-primary" id="timer-start">スタート</button>
-                <button type="button" class="btn btn-ghost" id="timer-reset">リセット</button>
+                <button type="button" class="btn btn-primary" id="timer-start">▶️ スタート</button>
+                <button type="button" class="btn btn-ghost" id="timer-reset">🔄 リセット</button>
             </div>
         </section>';
         render_layout('勉強タイマー', $content, $nav);
         break;
 
     case 'study-log-create':
-        $content = '<section class="hero"><h2>学習ログ登録</h2><p>外部サイトで解いた結果を入力します。</p></section>
+        $content = '<section class="hero"><h2>📝 学習ログ登録</h2><p>外部サイトで解いた結果を入力します。</p></section>
         <form method="post" enctype="multipart/form-data" class="form-panel">
             <input type="hidden" name="action" value="submit-study-log">
-            <label>勉強タイトル<input type="text" name="title" required></label>
-            <label>勉強時間（分）<input type="number" name="study_minutes" min="0" required></label>
-            <label>問題数<input type="number" name="question_count" min="0" required></label>
-            <label>正答数<input type="number" name="correct_count" min="0" required></label>
-            <label>スクリーンショット<input type="file" name="screenshot" accept="image/*"></label>
-            <label>メモ<textarea name="memo" rows="4"></textarea></label>
-            <button class="btn btn-primary" type="submit">登録する</button>
+            <label>📚 勉強タイトル<input type="text" name="title" required></label>
+            <label>⏱️ 勉強時間（分）<input type="number" name="study_minutes" min="0" required></label>
+            <label>❓ 問題数<input type="number" name="question_count" min="0" required></label>
+            <label>✅ 正答数<input type="number" name="correct_count" min="0" required></label>
+            <label>📸 スクリーンショット<input type="file" name="screenshot" accept="image/*"></label>
+            <label>📝 メモ<textarea name="memo" rows="4"></textarea></label>
+            <button class="btn btn-primary" type="submit">✍️ 登録する</button>
         </form>';
         render_layout('学習ログ登録', $content, $nav);
         break;
@@ -533,9 +535,10 @@ switch ($page) {
         $rows = $stmt->fetchAll();
         $cards = '';
         foreach ($rows as $row) {
-            $cards .= '<article class="card"><h3>' . h($row['title']) . '</h3><p>勉強時間: ' . h((string) $row['study_minutes']) . ' 分</p><p>正答率: ' . h((string) $row['correct_rate']) . '%</p><p>状態: ' . h($row['status']) . '</p></article>';
+            $status_emoji = $row['status'] === 'approved' ? '✅' : ($row['status'] === 'rejected' ? '❌' : '⏳');
+            $cards .= '<article class="card"><h3>' . h($row['title']) . '</h3><p>⏱️ 勉強時間: ' . h((string) $row['study_minutes']) . ' 分</p><p>📊 正答率: ' . h((string) $row['correct_rate']) . '%</p><p>' . $status_emoji . ' 状態: ' . h($row['status']) . '</p></article>';
         }
-        $content = '<section class="hero"><h2>学習ログ一覧</h2><p>登録した内容と承認状態を確認します。</p></section><div class="grid">' . $cards . '</div>';
+        $content = '<section class="hero"><h2>📚 学習ログ一覧</h2><p>登録した内容と承認状態を確認します。</p></section><div class="grid">' . $cards . '</div>';
         render_layout('学習ログ一覧', $content, $nav);
         break;
 
@@ -545,15 +548,17 @@ switch ($page) {
         $rows = $stmt->fetchAll();
         $recent = '';
         foreach ($rows as $row) {
-            $recent .= '<li>' . h($row['created_at']) . ' / ' . h($row['result_type']) . ' / ' . h((string) $row['delta_points']) . '</li>';
+            $result_icon = $row['result_type'] === 'win' ? '🎉' : '😢';
+            $recent .= '<li>' . h($row['created_at']) . ' ' . $result_icon . ' ' . h($row['result_type']) . ' / ' . h((string) $row['delta_points']) . 'pt</li>';
         }
-        $content = '<section class="hero"><h2>スロット</h2><p>ゲームポイントをベットして結果を確認します。</p></section>
+        $content = '<section class="hero"><h2>🎰 スロット</h2><p>ゲームポイントをベットして結果を確認します。</p></section>
         <section class="card">
             <form method="post" class="form-panel inline-form">
                 <input type="hidden" name="action" value="spin-slot">
-                <label>ベット額<input type="number" name="bet_points" min="1" value="' . h(setting_value('slot_min_bet', '10')) . '"></label>
-                <button class="btn btn-primary" type="submit">スピン</button>
+                <label>💰 ベット額<input type="number" name="bet_points" min="1" value="' . h(setting_value('slot_min_bet', '10')) . '"></label>
+                <button class="btn btn-primary" type="submit" data-action="spin-slot">🎡 スピン</button>
             </form>
+            <h3>🕐 最近の結果</h3>
             <ul class="history-list">' . $recent . '</ul>
         </section>';
         render_layout('スロット', $content, $nav);
@@ -563,9 +568,9 @@ switch ($page) {
         $rows = db()->query('SELECT * FROM rewards ORDER BY id DESC')->fetchAll();
         $cards = '';
         foreach ($rows as $row) {
-            $cards .= '<article class="card"><h3>' . h($row['name']) . '</h3><p>' . h($row['description'] ?? '') . '</p><p>必要交換ポイント: ' . h((string) $row['exchange_points_cost']) . '</p><p>1日上限: ' . h((string) $row['daily_limit']) . '</p></article>';
+            $cards .= '<article class="card"><h3>🎁 ' . h($row['name']) . '</h3><p>' . h($row['description'] ?? '') . '</p><p>💳 必要交換ポイント: ' . h((string) $row['exchange_points_cost']) . '</p></article>';
         }
-        $content = '<section class="hero"><h2>ご褒美一覧</h2><p>交換対象の一覧です。</p></section><div class="grid">' . $cards . '</div>';
+        $content = '<section class="hero"><h2>🎁 ご褒美一覧</h2><p>交換対象の一覧です。</p></section><div class="grid">' . $cards . '</div>';
         render_layout('ご褒美一覧', $content, $nav);
         break;
 
@@ -580,36 +585,38 @@ switch ($page) {
         $requestRows = $requests->fetchAll();
         $list = '';
         foreach ($requestRows as $row) {
-            $list .= '<li>' . h($row['reward_name']) . ' / ' . h($row['status']) . ' / ' . h((string) $row['requested_exchange_points']) . '</li>';
+            $status_icon = $row['status'] === 'approved' ? '✅' : ($row['status'] === 'rejected' ? '❌' : '⏳');
+            $list .= '<li>' . h($row['reward_name']) . ' ' . $status_icon . ' ' . h($row['status']) . ' / ' . h((string) $row['requested_exchange_points']) . 'pt</li>';
         }
-        $content = '<section class="hero"><h2>ご褒美交換申請</h2><p>管理者承認制で交換します。</p></section>
+        $content = '<section class="hero"><h2>💳 ご褒美交換申請</h2><p>管理者承認制で交換します。</p></section>
         <form method="post" class="form-panel">
             <input type="hidden" name="action" value="request-reward">
-            <label>ご褒美<select name="reward_id">' . $options . '</select></label>
-            <label>数量<input type="number" name="quantity" min="1" value="1"></label>
-            <label>メモ<textarea name="memo" rows="3"></textarea></label>
-            <button class="btn btn-primary" type="submit">申請する</button>
+            <label>🎁 ご褒美<select name="reward_id">' . $options . '</select></label>
+            <label>🔢 数量<input type="number" name="quantity" min="1" value="1"></label>
+            <label>📝 メモ<textarea name="memo" rows="3"></textarea></label>
+            <button class="btn btn-primary" type="submit">📤 申請する</button>
         </form>
+        <h3>📋 申請履歴</h3>
         <ul class="history-list">' . $list . '</ul>';
         render_layout('ご褒美交換申請', $content, $nav);
         break;
 
     case 'gacha-menu':
-        $content = '<section class="hero"><h2>ガチャメニュー</h2><p>今後の拡張を見据えた仮画面です。</p></section>
+        $content = '<section class="hero"><h2>🎰 ガチャメニュー</h2><p>今後の拡張を見据えた仮画面です。</p></section>
         <div class="grid">
-            <a class="card card-link" href="' . h(url('gacha-characters')) . '"><h3>キャラガチャ仮画面</h3><p>キャラコレクションの入口です。</p></a>
-            <a class="card card-link" href="' . h(url('gacha-points')) . '"><h3>ポイントガチャ仮画面</h3><p>交換ポイント増減の演出を想定しています。</p></a>
+            <a class="card card-link" href="' . h(url('gacha-characters')) . '"><h3>🎀 キャラガチャ仮画面</h3><p>キャラコレクションの入口です。</p></a>
+            <a class="card card-link" href="' . h(url('gacha-points')) . '"><h3>💰 ポイントガチャ仮画面</h3><p>交換ポイント増減の演出を想定しています。</p></a>
         </div>';
         render_layout('ガチャメニュー', $content, $nav);
         break;
 
     case 'gacha-characters':
-        $content = '<section class="hero"><h2>キャラガチャ仮画面</h2><p>将来のキャラクター実装を前提にしたプレースホルダーです。</p></section><section class="card"><p>ここに演出、レア度、獲得キャラ一覧を追加できます。</p></section>';
+        $content = '<section class="hero"><h2>🎀 キャラガチャ仮画面</h2><p>将来のキャラクター実装を前提にしたプレースホルダーです。</p></section><section class="card gacha-result"><p style="text-align: center; font-size: 3rem; margin: 40px 0;">🎊</p><p style="text-align: center;">キャラクターをゲット！</p><button class="btn btn-primary gacha-button" type="button" style="width: 100%; margin-top: 16px;">もう一度ガチャる</button></section>';
         render_layout('キャラガチャ仮画面', $content, $nav);
         break;
 
     case 'gacha-points':
-        $content = '<section class="hero"><h2>ポイントガチャ仮画面</h2><p>交換ポイントを消費するガチャの仮配置です。</p></section><section class="card"><p>大当たり・小当たり・ハズレのテーブルを後から追加しやすい構成です。</p></section>';
+        $content = '<section class="hero"><h2>💰 ポイントガチャ仮画面</h2><p>交換ポイントを消費するガチャの仮配置です。</p></section><section class="card gacha-result"><p style="text-align: center; font-size: 3rem; margin: 40px 0;">✨</p><p style="text-align: center;">100 ポイント ゲット！</p><button class="btn btn-primary gacha-button" type="button" style="width: 100%; margin-top: 16px;">もう一度ガチャる</button></section>';
         render_layout('ポイントガチャ仮画面', $content, $nav);
         break;
 
@@ -617,10 +624,10 @@ switch ($page) {
         if (!is_admin()) {
             redirect_to('dashboard');
         }
-        $content = '<section class="hero"><h2>管理者ダッシュボード</h2><p>全体管理の入口です。</p></section><div class="grid">'
-            . render_card('ユーザー管理', '学習者と管理者を一覧できます。')
-            . render_card('ポイント調整', 'ゲームポイント / 交換ポイントを調整できます。')
-            . render_card('承認待ち', '学習ログと交換申請を確認します。')
+        $content = '<section class="hero"><h2>👑 管理者ダッシュボード</h2><p>全体管理の入口です。</p></section><div class="grid">'
+            . render_card('👥 ユーザー管理', '学習者と管理者を一覧できます。')
+            . render_card('💰 ポイント調整', 'ゲームポイント / 交換ポイントを調整できます。')
+            . render_card('⏳ 承認待ち', '学習ログと交換申請を確認します。')
             . '</div>';
         render_layout('管理者ダッシュボード', $content, $nav);
         break;
@@ -634,19 +641,19 @@ switch ($page) {
         foreach ($users as $u) {
             $options .= '<option value="' . h($u['id']) . '">' . h($u['name']) . '（' . h($u['role']) . '）</option>';
         }
-        $content = '<section class="hero"><h2>ポイント調整</h2><p>対象ユーザーとポイント種類を選んで増減します。</p></section>
+        $content = '<section class="hero"><h2>💰 ポイント調整</h2><p>対象ユーザーとポイント種類を選んで増減します。</p></section>
         <form method="post" class="form-panel">
             <input type="hidden" name="action" value="point-adjust">
-            <label>対象ユーザー<select name="target_user_id">' . $options . '</select></label>
-            <label>ポイント種類
+            <label>👤 対象ユーザー<select name="target_user_id">' . $options . '</select></label>
+            <label>💎 ポイント種類
                 <select name="point_type">
                     <option value="game">ゲームポイント</option>
                     <option value="exchange">交換ポイント</option>
                 </select>
             </label>
-            <label>増減値<input type="number" name="amount" value="10"></label>
-            <label>コメント<textarea name="comment" rows="3"></textarea></label>
-            <button class="btn btn-primary" type="submit">保存する</button>
+            <label>➕➖ 増減値<input type="number" name="amount" value="10"></label>
+            <label>💬 コメント<textarea name="comment" rows="3"></textarea></label>
+            <button class="btn btn-primary" type="submit">💾 保存する</button>
         </form>';
         render_layout('ポイント調整', $content, $nav);
         break;
@@ -660,7 +667,7 @@ switch ($page) {
         foreach ($rows as $row) {
             $items .= '<tr><td>' . h($row['name']) . '</td><td>' . h($row['email']) . '</td><td>' . h($row['role']) . '</td><td>' . h((string) ($row['game_points'] ?? 0)) . '</td><td>' . h((string) ($row['exchange_points'] ?? 0)) . '</td></tr>';
         }
-        $content = '<section class="hero"><h2>ユーザー一覧</h2><p>登録済みユーザーを確認します。</p></section>
+        $content = '<section class="hero"><h2>👥 ユーザー一覧</h2><p>登録済みユーザーを確認します。</p></section>
         <table class="table"><thead><tr><th>名前</th><th>メール</th><th>ロール</th><th>ゲームポイント</th><th>交換ポイント</th></tr></thead><tbody>' . $items . '</tbody></table>';
         render_layout('ユーザー一覧', $content, $nav);
         break;
@@ -672,9 +679,9 @@ switch ($page) {
         $rows = db()->query('SELECT sl.*, u.name AS user_name FROM study_logs sl INNER JOIN users u ON u.id = sl.user_id ORDER BY sl.id DESC')->fetchAll();
         $cards = '';
         foreach ($rows as $row) {
-            $cards .= '<article class="card"><h3>' . h($row['title']) . '</h3><p>ユーザー: ' . h($row['user_name']) . '</p><p>状態: ' . h($row['status']) . '</p><form method="post" class="form-panel compact-form"><input type="hidden" name="action" value="update-study-review"><input type="hidden" name="log_id" value="' . h((string) $row['id']) . '"><label>付与ゲームポイント<input type="number" name="award_game_points" value="' . h((string) $row['rewarded_game_points']) . '"></label><label>コメント<textarea name="comment" rows="2"></textarea></label><div class="button-row"><button class="btn btn-secondary" name="status" value="approved" type="submit">承認</button><button class="btn btn-ghost" name="status" value="rejected" type="submit">却下</button></div></form></article>';
+            $cards .= '<article class="card"><h3>📚 ' . h($row['title']) . '</h3><p>👤 ユーザー: ' . h($row['user_name']) . '</p><p>📊 正答率: ' . h((string) $row['correct_rate']) . '%</p><p>状態: ' . h($row['status']) . '</p><form method="post" class="form-panel" style="margin-top: 12px;"><input type="hidden" name="action" value="update-study-review"><input type="hidden" name="log_id" value="' . h((string) $row['id']) . '"><label>ステータス<select name="status"><option value="pending">保留中</option><option value="approved">✅ 承認</option><option value="rejected">❌ 却下</option></select></label><label>付与ポイント<input type="number" name="award_game_points" min="0" value="0"></label><label>コメント<textarea name="comment" rows="2"></textarea></label><button class="btn btn-primary" type="submit">💾 更新</button></form></article>';
         }
-        $content = '<section class="hero"><h2>学習ログ承認</h2><p>学習ログを確認して承認します。</p></section><div class="grid">' . $cards . '</div>';
+        $content = '<section class="hero"><h2>✅ 学習ログ承認</h2><p>学習ログを確認して承認します。</p></section><div class="grid">' . $cards . '</div>';
         render_layout('学習ログ承認', $content, $nav);
         break;
 
@@ -685,17 +692,17 @@ switch ($page) {
         $rows = db()->query('SELECT * FROM rewards ORDER BY id DESC')->fetchAll();
         $cards = '';
         foreach ($rows as $row) {
-            $cards .= '<article class="card"><h3>' . h($row['name']) . '</h3><p>' . h($row['description'] ?? '') . '</p><p>必要交換ポイント: ' . h((string) $row['exchange_points_cost']) . '</p><p>1日上限: ' . h((string) $row['daily_limit']) . '</p></article>';
+            $cards .= '<article class="card"><h3>🎁 ' . h($row['name']) . '</h3><p>' . h($row['description'] ?? '') . '</p><p>💳 必要交換ポイント: ' . h((string) $row['exchange_points_cost']) . '</p><p>1日の上限: ' . h((string) $row['daily_limit']) . '</p></article>';
         }
-        $content = '<section class="hero"><h2>ご褒美管理</h2><p>追加・編集・削除の入口です。初期版は登録中心です。</p></section>
+        $content = '<section class="hero"><h2>🎁 ご褒美管理</h2><p>追加・編集・削除の入口です。初期版は登録中心です。</p></section>
         <form method="post" class="form-panel">
             <input type="hidden" name="action" value="create-reward">
-            <label>商品名<input type="text" name="name" required></label>
-            <label>説明<textarea name="description" rows="3"></textarea></label>
-            <label>必要交換ポイント<input type="number" name="exchange_points_cost" value="30"></label>
-            <label>1日の交換上限<input type="number" name="daily_limit" value="1"></label>
-            <label class="checkbox"><input type="checkbox" name="is_active" checked>有効</label>
-            <button class="btn btn-primary" type="submit">登録する</button>
+            <label>🎁 商品名<input type="text" name="name" required></label>
+            <label>📝 説明<textarea name="description" rows="3"></textarea></label>
+            <label>💳 必要交換ポイント<input type="number" name="exchange_points_cost" value="30"></label>
+            <label>📅 1日の交換上限<input type="number" name="daily_limit" value="1"></label>
+            <label class="checkbox"><input type="checkbox" name="is_active" checked>✅ 有効</label>
+            <button class="btn btn-primary" type="submit">➕ 登録する</button>
         </form>
         <div class="grid">' . $cards . '</div>';
         render_layout('ご褒美管理', $content, $nav);
@@ -705,12 +712,12 @@ switch ($page) {
         if (!is_admin()) {
             redirect_to('dashboard');
         }
-        $rows = db()->query('SELECT rr.*, u.name AS user_name, r.name AS reward_name FROM reward_requests rr INNER JOIN users u ON u.id = rr.user_id INNER JOIN rewards r ON r.id = rr.reward_id ORDER BY rr.id DESC')->fetchAll();
+        $rows = db()->query('SELECT rr.*, u.name AS user_name, r.name AS reward_name FROM reward_requests rr INNER JOIN users u ON u.id = rr.user_id INNER JOIN rewards r ON r.id = rr.reward_id ORDER BY rr.id DESC LIMIT 50')->fetchAll();
         $cards = '';
         foreach ($rows as $row) {
-            $cards .= '<article class="card"><h3>' . h($row['reward_name']) . '</h3><p>申請者: ' . h($row['user_name']) . '</p><p>状態: ' . h($row['status']) . '</p><form method="post" class="form-panel compact-form"><input type="hidden" name="action" value="update-reward-request"><input type="hidden" name="request_id" value="' . h((string) $row['id']) . '"><label>コメント<input type="text" name="comment"></label><div class="button-row"><button class="btn btn-secondary" name="status" value="approved" type="submit">承認</button><button class="btn btn-ghost" name="status" value="rejected" type="submit">却下</button></div></form></article>';
+            $cards .= '<article class="card"><h3>🎁 ' . h($row['reward_name']) . '</h3><p>👤 申請者: ' . h($row['user_name']) . '</p><p>数量: ' . h((string) $row['quantity']) . '</p><p>状態: ' . h($row['status']) . '</p><form method="post" class="form-panel" style="margin-top: 12px;"><input type="hidden" name="action" value="update-reward-request"><input type="hidden" name="request_id" value="' . h((string) $row['id']) . '"><label>ステータス<select name="status"><option value="pending">保留中</option><option value="approved">✅ 承認</option><option value="rejected">❌ 却下</option></select></label><label>コメント<textarea name="comment" rows="2"></textarea></label><button class="btn btn-primary" type="submit">💾 更新</button></form></article>';
         }
-        $content = '<section class="hero"><h2>交換申請承認</h2><p>交換申請を承認または却下します。</p></section><div class="grid">' . $cards . '</div>';
+        $content = '<section class="hero"><h2>💳 交換申請承認</h2><p>交換申請を承認または却下します。</p></section><div class="grid">' . $cards . '</div>';
         render_layout('交換申請承認', $content, $nav);
         break;
 
@@ -721,13 +728,13 @@ switch ($page) {
         $settings = db()->query('SELECT * FROM game_settings ORDER BY setting_key ASC')->fetchAll();
         $fields = '';
         foreach ($settings as $setting) {
-            $fields .= '<label>' . h($setting['setting_key']) . '<input type="text" name="settings[' . h($setting['setting_key']) . ']" value="' . h($setting['setting_value']) . '"></label>';
+            $fields .= '<label>⚙️ ' . h($setting['setting_key']) . '<input type="text" name="settings[' . h($setting['setting_key']) . ']" value="' . h($setting['setting_value']) . '"></label>';
         }
-        $content = '<section class="hero"><h2>ゲーム設定</h2><p>スロットや学習報酬の設定を保守します。</p></section>
+        $content = '<section class="hero"><h2>⚙️ ゲーム設定</h2><p>スロットや学習報酬の設定を保守します。</p></section>
         <form method="post" class="form-panel">
             <input type="hidden" name="action" value="save-game-settings">
             ' . $fields . '
-            <button class="btn btn-primary" type="submit">保存する</button>
+            <button class="btn btn-primary" type="submit">💾 保存する</button>
         </form>';
         render_layout('ゲーム設定', $content, $nav);
         break;
