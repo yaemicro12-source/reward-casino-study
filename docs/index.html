@@ -3,30 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reward Casino Study - 紹介ページ</title>
-    <style>
-        body { margin: 0; font-family: system-ui, sans-serif; background: #0b1630; color: #f5f7fb; }
-        main { max-width: 900px; margin: 0 auto; padding: 40px 20px 64px; }
-        .card { background: #101f39; border: 1px solid rgba(216,181,93,.25); border-radius: 20px; padding: 24px; margin-bottom: 18px; }
-        h1, h2 { margin-top: 0; }
-        a { color: #f4d67b; }
-        ul { line-height: 1.9; }
-    </style>
+    <title>Reward Casino Study</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<main>
-    <div class="card">
-        <h1>Reward Casino Study</h1>
-        <p>勉強・家事・禁煙などの行動を、ゲームポイントと交換ポイントで管理するアプリの紹介ページです。</p>
+    <div class="page-glow page-glow-a"></div>
+    <div class="page-glow page-glow-b"></div>
+    <div class="sparkles" aria-hidden="true"></div>
+
+    <div class="shell">
+        <aside class="sidebar glass-panel">
+            <div class="brand-lockup">
+                <div class="brand-emblem">RCS</div>
+                <div>
+                    <p class="eyebrow">Reward Casino Study</p>
+                    <h1>ホーム</h1>
+                </div>
+            </div>
+
+            <nav class="side-nav" aria-label="サイドメニュー">
+                <a class="side-item active" href="#"><span class="side-icon">⌂</span><span>ダッシュボード</span></a>
+                <a class="side-item" href="#"><span class="side-icon">✎</span><span>勉強記録</span></a>
+                <a class="side-item" href="#"><span class="side-icon">✦</span><span>ゲーム</span></a>
+                <a class="side-item" href="#"><span class="side-icon">◈</span><span>ご褒美交換</span></a>
+                <a class="side-item" href="#"><span class="side-icon">◎</span><span>ガチャ</span></a>
+                <a class="side-item" href="#"><span class="side-icon">☰</span><span>ポイント履歴</span></a>
+                <a class="side-item" href="#"><span class="side-icon">⚙</span><span>設定</span></a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <header class="topbar glass-panel">
+                <div class="title-block">
+                    <div class="app-badge">RCS</div>
+                    <div>
+                        <p class="eyebrow">Reward Casino Study</p>
+                        <h2>Casino Home</h2>
+                    </div>
+                </div>
+
+                <div class="status-row">
+                    <div class="status-chip status-chip-gold">
+                        <span class="chip-label">ゲームポイント</span>
+                        <strong id="gamePoints">1,240</strong>
+                    </div>
+                    <div class="status-chip status-chip-violet">
+                        <span class="chip-label">交換ポイント</span>
+                        <strong id="exchangePoints">320</strong>
+                    </div>
+                    <div class="status-chip">
+                        <span class="chip-label">ユーザー名</span>
+                        <strong>yae</strong>
+                    </div>
+                    <div class="status-chip">
+                        <span class="chip-label">レベル</span>
+                        <strong>Lv. 18</strong>
+                    </div>
+                    <button class="icon-pill" type="button" aria-label="通知">🔔</button>
+                    <button class="icon-pill" type="button" aria-label="設定">⚙</button>
+                </div>
+            </header>
+
+            <section class="hero-grid">
+                <div class="hero-left glass-panel stage-panel">
+                    <div class="main-girl-wrap" id="mainGirlWrap">
+                        <div class="main-girl-sheen"></div>
+                        <img src="maingirl.jpg" alt="メインキャラクター" class="main-girl" id="mainGirl">
+                    </div>
+
+                    <div class="speech-bubble" id="speechBubble">
+                        今日も一緒に頑張ろうね♡
+                    </div>
+
+                    <div class="hero-tags">
+                        <span>夜のラウンジ</span>
+                        <span>高級感</span>
+                        <span>学習管理</span>
+                    </div>
+                </div>
+
+                <section class="slot-card glass-panel gold-frame">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Center Right</p>
+                            <h3>SLOT GAME</h3>
+                        </div>
+                        <div class="lever" aria-hidden="true">
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="slot-window">
+                        <div class="reel" data-reel>7</div>
+                        <div class="reel" data-reel>★</div>
+                        <div class="reel" data-reel>R</div>
+                    </div>
+
+                    <div class="bet-row">
+                        <div class="bet-box">
+                            <span>BET</span>
+                            <strong id="betValue">20</strong>
+                        </div>
+                        <div class="bet-controls">
+                            <button class="chip-btn" type="button" data-bet="-">－</button>
+                            <button class="chip-btn" type="button" data-bet="+">＋</button>
+                        </div>
+                    </div>
+
+                    <button class="spin-btn" type="button" id="spinButton">
+                        <span class="spin-ring"></span>
+                        SPIN
+                    </button>
+                </section>
+
+                <section class="study-card glass-panel">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Right Panel</p>
+                            <h3>今日の勉強状況</h3>
+                        </div>
+                    </div>
+
+                    <div class="progress-list">
+                        <article class="progress-item">
+                            <div class="progress-meta">
+                                <span class="progress-icon">⏱</span>
+                                <div>
+                                    <p>勉強時間</p>
+                                    <strong>3時間20分</strong>
+                                </div>
+                            </div>
+                            <div class="bar"><span style="width: 72%"></span></div>
+                        </article>
+
+                        <article class="progress-item">
+                            <div class="progress-meta">
+                                <span class="progress-icon">✎</span>
+                                <div>
+                                    <p>問題数</p>
+                                    <strong>42問</strong>
+                                </div>
+                            </div>
+                            <div class="bar"><span style="width: 58%"></span></div>
+                        </article>
+
+                        <article class="progress-item">
+                            <div class="progress-meta">
+                                <span class="progress-icon">◎</span>
+                                <div>
+                                    <p>正答率</p>
+                                    <strong>86%</strong>
+                                </div>
+                            </div>
+                            <div class="bar"><span style="width: 86%"></span></div>
+                        </article>
+                    </div>
+
+                    <button class="record-btn" type="button">記録する</button>
+                </section>
+            </section>
+
+            <section class="feature-grid">
+                <article class="feature-card glass-panel gold-frame">
+                    <div class="feature-head">
+                        <div class="feature-badge">①</div>
+                        <div>
+                            <h3>キャラガチャ</h3>
+                            <p>交換ポイントで案内役GET</p>
+                        </div>
+                    </div>
+                    <div class="feature-art card-art card-art-girl" aria-hidden="true"></div>
+                    <button class="action-btn" type="button">ガチャる</button>
+                </article>
+
+                <article class="feature-card glass-panel gold-frame">
+                    <div class="feature-head">
+                        <div class="feature-badge">②</div>
+                        <div>
+                            <h3>ポイントガチャ</h3>
+                            <p>交換ポイントを増やすチャンス</p>
+                        </div>
+                    </div>
+                    <div class="feature-art card-art card-art-treasure" aria-hidden="true"></div>
+                    <button class="action-btn" type="button">ガチャる</button>
+                </article>
+
+                <article class="feature-card glass-panel gold-frame">
+                    <div class="feature-head">
+                        <div class="feature-badge">③</div>
+                        <div>
+                            <h3>ご褒美交換</h3>
+                            <p>一覧表示</p>
+                        </div>
+                    </div>
+                    <ul class="reward-list">
+                        <li>タバコ</li>
+                        <li>ゲーム時間</li>
+                        <li>お小遣い</li>
+                    </ul>
+                    <button class="action-btn" type="button">交換ボタン</button>
+                </article>
+            </section>
+        </main>
     </div>
-    <div class="card">
-        <h2>GitHub Pages 用の説明</h2>
-        <ul>
-            <li>このページは紹介専用です。</li>
-            <li>PHP 本体はさくらのレンタルサーバーで動かします。</li>
-            <li>アプリ本体と紹介ページは分けています。</li>
-        </ul>
-    </div>
-</main>
+
+    <nav class="bottom-nav glass-panel" aria-label="固定ナビゲーション">
+        <a href="#" class="bottom-nav-item active"><span>⌂</span><small>ホーム</small></a>
+        <a href="#" class="bottom-nav-item"><span>✎</span><small>勉強</small></a>
+        <a href="#" class="bottom-nav-item"><span>✦</span><small>ゲーム</small></a>
+        <a href="#" class="bottom-nav-item"><span>◈</span><small>ご褒美</small></a>
+        <a href="#" class="bottom-nav-item"><span>◎</span><small>ガチャ</small></a>
+        <a href="#" class="bottom-nav-item"><span>☰</span><small>履歴</small></a>
+        <a href="#" class="bottom-nav-item"><span>⚙</span><small>設定</small></a>
+    </nav>
+
+    <template id="bubbleMessages">
+        <div data-message>今日も一緒に頑張ろうね♡</div>
+        <div data-message>ご褒美楽しみにしてて…？</div>
+        <div data-message>今日はスロットで運試しする？</div>
+        <div data-message>ゲームポイント、いい感じだよ。</div>
+        <div data-message>交換ポイントをためると選べる幅が広がるよ。</div>
+    </template>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
