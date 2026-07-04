@@ -120,7 +120,7 @@ button {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 248px minmax(0, 1fr);
+    grid-template-columns: 255px minmax(0, 1fr);
     gap: 1rem;
     min-height: 100vh;
     padding: 1rem 1rem 7rem;
@@ -271,7 +271,7 @@ button {
     justify-content: space-between;
     gap: 1rem;
     border-radius: 28px;
-    padding: 1rem 1.15rem;
+    padding: 0.95rem 1.05rem;
     overflow: hidden;
     position: relative;
 }
@@ -309,7 +309,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
-    min-width: 6.7rem;
+    min-width: 6.9rem;
     padding: 0.65rem 0.85rem;
     border-radius: 1rem;
     border: 1px solid rgba(244, 210, 122, 0.15);
@@ -356,7 +356,7 @@ button {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: minmax(280px, 1.1fr) minmax(290px, 0.96fr) minmax(260px, 0.92fr);
+    grid-template-columns: minmax(340px, 1.15fr) minmax(300px, 0.95fr) minmax(270px, 0.9fr);
     gap: 1rem;
     align-items: start;
 }
@@ -371,7 +371,7 @@ button {
 }
 
 .hero-left {
-    min-height: clamp(34rem, 70vh, 56rem);
+    min-height: clamp(36rem, 72vh, 58rem);
     display: grid;
     align-content: start;
     gap: 1rem;
@@ -414,7 +414,7 @@ button {
 }
 
 .main-girl {
-    width: min(100%, 38rem);
+    width: min(100%, 44rem);
     height: auto;
     max-height: 100%;
     object-fit: contain;
@@ -457,9 +457,9 @@ button {
 .speech-bubble {
     position: relative;
     align-self: end;
-    max-width: min(36rem, 100%);
+    max-width: min(39rem, 100%);
     width: fit-content;
-    padding: 1rem 1.15rem;
+    padding: 1.05rem 1.2rem;
     border-radius: 1.4rem;
     background:
         linear-gradient(180deg, rgba(255, 159, 216, 0.2), rgba(13, 11, 26, 0.72)),
@@ -802,7 +802,7 @@ button {
 
 .feature-card {
     padding: 1rem;
-    min-height: 18rem;
+    min-height: 19rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -836,12 +836,156 @@ button {
 
 .feature-art {
     position: relative;
-    min-height: 8.5rem;
+    min-height: 9rem;
     display: grid;
     place-items: center;
     border-radius: 1.3rem;
     border: 1px solid rgba(244, 210, 122, 0.16);
     overflow: hidden;
+}
+
+.guide-strip {
+    padding: 1rem;
+    border-radius: 28px;
+    display: grid;
+    gap: 0.95rem;
+}
+
+.guide-strip-head {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.guide-strip-head h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+}
+
+.guide-strip-note {
+    align-self: center;
+    white-space: nowrap;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    color: var(--gold);
+    background: rgba(244, 210, 122, 0.08);
+    border: 1px solid rgba(244, 210, 122, 0.16);
+}
+
+.guide-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.guide-card {
+    position: relative;
+    padding: 0.75rem;
+    border-radius: 1.25rem;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 28%),
+        rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(244, 210, 122, 0.14);
+    box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.03);
+}
+
+.guide-card-active {
+    border-color: rgba(244, 210, 122, 0.34);
+    box-shadow:
+        0 0 24px rgba(244, 210, 122, 0.12),
+        inset 0 0 18px rgba(244, 210, 122, 0.07);
+}
+
+.guide-card-badge {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    z-index: 2;
+    padding: 0.22rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    color: #221604;
+    background: linear-gradient(180deg, #fff1b7, #ddb04d);
+    box-shadow: 0 0 12px rgba(244, 210, 122, 0.22);
+}
+
+.guide-portrait {
+    position: relative;
+    overflow: hidden;
+    min-height: 10.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(244, 210, 122, 0.16);
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(20, 27, 49, 0.9), rgba(6, 8, 15, 0.96));
+}
+
+.guide-portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.guide-portrait::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, transparent 0 50%, rgba(0, 0, 0, 0.28) 100%),
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.12), transparent 26%);
+    pointer-events: none;
+}
+
+.guide-portrait-image {
+    background: linear-gradient(180deg, rgba(91, 195, 255, 0.14), rgba(248, 124, 201, 0.1));
+}
+
+.guide-portrait-violet {
+    background:
+        radial-gradient(circle at 30% 24%, rgba(185, 108, 255, 0.32), transparent 20%),
+        linear-gradient(180deg, rgba(31, 19, 53, 0.96), rgba(7, 8, 15, 0.96));
+}
+
+.guide-portrait-violet::before,
+.guide-portrait-gold::before,
+.guide-portrait-rose::before,
+.guide-portrait-pink::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.14), transparent 24%),
+        linear-gradient(180deg, transparent 0 55%, rgba(0, 0, 0, 0.38) 100%);
+}
+
+.guide-portrait-gold {
+    background:
+        radial-gradient(circle at 30% 24%, rgba(244, 210, 122, 0.32), transparent 20%),
+        linear-gradient(180deg, rgba(44, 28, 10, 0.96), rgba(7, 8, 15, 0.96));
+}
+
+.guide-portrait-rose {
+    background:
+        radial-gradient(circle at 30% 24%, rgba(255, 138, 188, 0.28), transparent 20%),
+        linear-gradient(180deg, rgba(43, 18, 34, 0.96), rgba(7, 8, 15, 0.96));
+}
+
+.guide-portrait-pink {
+    background:
+        radial-gradient(circle at 30% 24%, rgba(248, 124, 201, 0.32), transparent 20%),
+        linear-gradient(180deg, rgba(55, 18, 41, 0.96), rgba(7, 8, 15, 0.96));
+}
+
+.guide-card h4 {
+    margin: 0.7rem 0 0;
+    font-size: 0.95rem;
+    text-align: center;
+    letter-spacing: 0.03em;
 }
 
 .card-art-girl {
@@ -1020,6 +1164,14 @@ button {
     .feature-grid .feature-card:last-child {
         grid-column: 1 / -1;
     }
+
+    .guide-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .guide-row .guide-card:nth-child(n+4) {
+        grid-column: span 1;
+    }
 }
 
 @media (max-width: 920px) {
@@ -1055,6 +1207,14 @@ button {
 
     .feature-grid .feature-card:last-child {
         grid-column: auto;
+    }
+
+    .guide-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .guide-strip-head {
+        flex-direction: column;
     }
 }
 
@@ -1110,5 +1270,13 @@ button {
     .chip-label,
     .status-chip strong {
         white-space: nowrap;
+    }
+
+    .guide-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .guide-card {
+        padding: 0.65rem;
     }
 }
