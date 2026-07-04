@@ -1,6 +1,6 @@
 <?php
 
-$config = require __DIR__ . '/config.php';
+$config = require __DIR__ . '/../config/db.php';
 
 date_default_timezone_set($config['timezone']);
 session_start();

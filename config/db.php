@@ -11,5 +11,5 @@ return [
         'pass' => '',
         'charset' => 'utf8mb4',
     ],
-    'upload_dir' => __DIR__ . '/../public/storage/uploads',
+    'upload_dir' => __DIR__ . '/../storage/uploads',
 ];

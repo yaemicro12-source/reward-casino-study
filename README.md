@@ -29,21 +29,21 @@
 
 ### 1. データベース作成
 
-MySQL で新しいデータベースを作成し、`database/schema.sql` を流し込みます。
+MySQL で新しいデータベースを作成し、`schema.sql` を流し込みます。
 
 ```sql
-source database/schema.sql;
+source schema.sql;
 ```
 
 ### 2. 接続設定
 
-`app/config.php` の DB 情報を環境に合わせて変更します。
+`config/db.php` の DB 情報を環境に合わせて変更します。
 
 ### 3. Web サーバーの公開フォルダ
 
 公開ディレクトリは `public/` を指定してください。
 
-静的ファイルは `public/assets/`、アップロード先は `public/storage/uploads/` です。
+静的ファイルは `assets/`、アップロード先は `storage/uploads/` です。
 
 ### 4. 初回起動
 
@@ -106,3 +106,26 @@ source database/schema.sql;
 - ゲームポイントと交換ポイントは分離しています。
 - 直接の変換機能は初期実装では入れていません。
 - 後からゲーム、ガチャ、交換ポイント施策を追加しやすい構成にしています。
+
+## さくらのレンタルサーバーで動かす手順
+
+1. `index.php` を公開ディレクトリの直下に置きます。
+2. `public/index.php`、`app/bootstrap.php`、`assets/`、`config/db.php`、`storage/`、`schema.sql` を一緒にアップロードします。
+3. `config/db.php` の接続情報を、さくらの MySQL 情報に合わせて修正します。
+4. `schema.sql` を MySQL に流し込みます。
+5. ブラウザで `index.php` にアクセスして動作を確認します。
+
+### アップロード対象
+
+- `index.php`
+- `public/index.php`
+- `app/bootstrap.php`
+- `assets/`
+- `config/db.php`
+- `schema.sql`
+- `storage/`
+
+### GitHub Pages 用の説明ページ
+
+- `docs/index.html`
+- こちらは紹介専用です。PHP 本体とは分けて管理します。
