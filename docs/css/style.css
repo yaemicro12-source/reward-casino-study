@@ -1168,6 +1168,16 @@ button {
         min-height: 32rem;
     }
 
+    .hero-character-layer {
+        left: -8%;
+        width: 124%;
+        height: 112%;
+    }
+
+    .main-bunny {
+        height: 114%;
+    }
+
     .feature-grid .feature-card:last-child {
         grid-column: auto;
     }
@@ -1202,6 +1212,16 @@ button {
     .hero-left {
         min-height: 28rem;
         padding: 0.8rem;
+    }
+
+    .hero-character-layer {
+        left: -6%;
+        width: 120%;
+        height: 108%;
+    }
+
+    .main-bunny {
+        height: 108%;
     }
 
     .page-hero,
@@ -1575,10 +1595,10 @@ button {
 /* テーブル＋女の子専用レイヤー */
 .hero-character-layer {
   position: absolute;
-  left: -6%;
-  bottom: -2%;
-  width: 118%;
-  height: 100%;
+  left: -10%;
+  bottom: -4%;
+  width: 126%;
+  height: 114%;
   pointer-events: none;
   z-index: 6;
 }
@@ -1586,9 +1606,9 @@ button {
 /* テーブル：女の子の下 */
 .main-table {
   position: absolute;
-  left: 10%;
+  left: 8%;
   bottom: 0;
-  width: 92%;
+  width: 96%;
   height: auto;
   z-index: 6;
 }
@@ -1596,10 +1616,10 @@ button {
 /* 女の子：テーブルの上 */
 .main-bunny {
   position: absolute;
-  left: 0;
+  left: -2%;
   bottom: 0;
   width: auto;
-  height: 100%;
+  height: 118%;
   max-width: 100%;
   z-index: 7;
   animation: bunnyIdle 3s ease-in-out infinite;
