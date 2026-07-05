@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勉強記録 | Reward Casino Study</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="study">
+    <div class="page-glow page-glow-a"></div>
+    <div class="page-glow page-glow-b"></div>
+    <div class="sparkles" aria-hidden="true"></div>
+
+    <div class="shell">
+        <aside class="sidebar glass-panel">
+            <div class="brand-lockup">
+                <div class="brand-emblem">RCS</div>
+                <div>
+                    <p class="eyebrow">Reward Casino Study</p>
+                    <h1>勉強記録</h1>
+                </div>
+            </div>
+            <nav class="side-nav" aria-label="サイドメニュー">
+                <a class="side-item" href="index.html"><span class="side-icon">⌂</span><span>ダッシュボード</span></a>
+                <a class="side-item" href="study.html"><span class="side-icon">✎</span><span>勉強記録</span></a>
+                <a class="side-item" href="game.html"><span class="side-icon">♠</span><span>ゲーム</span></a>
+                <a class="side-item" href="reward.html"><span class="side-icon">◆</span><span>ご褒美交換</span></a>
+                <a class="side-item" href="gacha.html"><span class="side-icon">✦</span><span>ガチャ</span></a>
+                <a class="side-item" href="history.html"><span class="side-icon">◌</span><span>ポイント履歴</span></a>
+                <a class="side-item" href="settings.html"><span class="side-icon">⚙</span><span>設定</span></a>
+            </nav>
+        </aside>
+
+        <main class="main page-main">
+            <header class="topbar glass-panel">
+                <div class="title-block">
+                    <div class="app-badge">RCS</div>
+                    <div>
+                        <p class="eyebrow">Study</p>
+                        <h2>勉強記録</h2>
+                    </div>
+                </div>
+                <div class="status-row">
+                    <div class="status-chip status-chip-gold"><span class="chip-label">ゲームポイント</span><strong>1,240</strong></div>
+                    <div class="status-chip status-chip-violet"><span class="chip-label">交換ポイント</span><strong>320</strong></div>
+                    <a class="icon-pill" href="history.html">⌁</a>
+                    <a class="icon-pill" href="settings.html">⚙</a>
+                </div>
+            </header>
+
+            <section class="page-hero glass-panel gold-frame">
+                <div class="page-hero-copy">
+                    <p class="eyebrow">Study log</p>
+                    <h2>外部サイトで解いた結果を、やさしく記録する。</h2>
+                    <p>タイマー、学習タイトル、正答数、スクリーンショットをまとめて入力できる画面です。承認後にゲームポイントへ反映する設計のまま、あとから拡張しやすい形にしています。</p>
+                    <div class="mini-stats">
+                        <div class="mini-stat"><span>記録数</span><strong>18</strong></div>
+                        <div class="mini-stat"><span>承認待ち</span><strong>3</strong></div>
+                        <div class="mini-stat"><span>今月の学習</span><strong>42h</strong></div>
+                    </div>
+                </div>
+                <div class="page-hero-art">
+                    <img src="maingirl.png" alt="案内役">
+                </div>
+            </section>
+
+            <section class="page-grid">
+                <article class="page-card glass-panel gold-frame">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Timer</p>
+                            <h3>勉強タイマー</h3>
+                        </div>
+                    </div>
+                    <ul class="page-card-list">
+                        <li>60分集中</li>
+                        <li>5分休憩</li>
+                        <li>記録開始ボタン</li>
+                    </ul>
+                </article>
+
+                <article class="page-card glass-panel gold-frame">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Log</p>
+                            <h3>学習ログ登録</h3>
+                        </div>
+                    </div>
+                    <div class="form-stack">
+                        <div class="field-row"><label>勉強タイトル</label><input type="text" placeholder="例：英語長文"></div>
+                        <div class="field-row"><label>勉強時間</label><input type="text" placeholder="例：45分"></div>
+                        <div class="field-row"><label>問題数 / 正答数</label><input type="text" placeholder="例：40 / 34"></div>
+                    </div>
+                </article>
+
+                <article class="page-card glass-panel gold-frame">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Review</p>
+                            <h3>承認待ち一覧</h3>
+                        </div>
+                    </div>
+                    <ul class="timeline">
+                        <li class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-meta"><strong>数学演習</strong><small>正答率 88%</small></div>
+                            <span class="toggle-pill on">pending</span>
+                        </li>
+                        <li class="timeline-item done">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-meta"><strong>英単語</strong><small>承認済み</small></div>
+                            <span class="toggle-pill on">approved</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="page-card glass-panel gold-frame">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Shot</p>
+                            <h3>スクリーンショット提出</h3>
+                        </div>
+                    </div>
+                    <div class="art-grid">
+                        <div class="art-tile"><img src="main-character.png" alt="提出イメージ"></div>
+                        <div class="art-tile"><img src="casino-background.png" alt="背景イメージ"></div>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <nav class="bottom-nav glass-panel" aria-label="ボトムナビゲーション">
+        <a href="index.html" class="bottom-nav-item"><span>⌂</span><small>ホーム</small></a>
+        <a href="study.html" class="bottom-nav-item"><span>✎</span><small>勉強</small></a>
+        <a href="game.html" class="bottom-nav-item"><span>♠</span><small>ゲーム</small></a>
+        <a href="reward.html" class="bottom-nav-item"><span>◆</span><small>ご褒美</small></a>
+        <a href="gacha.html" class="bottom-nav-item"><span>✦</span><small>ガチャ</small></a>
+        <a href="history.html" class="bottom-nav-item"><span>◌</span><small>履歴</small></a>
+        <a href="settings.html" class="bottom-nav-item"><span>⚙</span><small>設定</small></a>
+    </nav>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

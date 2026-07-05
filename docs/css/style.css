@@ -1212,6 +1212,22 @@ button {
         grid-template-columns: 1fr;
     }
 
+    .page-hero,
+    .page-grid,
+    .mini-stats,
+    .art-grid,
+    .two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .page-hero {
+        padding: 0.85rem;
+    }
+
+    .page-hero-art {
+        min-height: 14rem;
+    }
+
     .hero-left {
         min-height: 32rem;
     }
@@ -1250,6 +1266,15 @@ button {
     .hero-left {
         min-height: 28rem;
         padding: 0.8rem;
+    }
+
+    .page-hero,
+    .page-card {
+        padding: 0.8rem;
+    }
+
+    .page-hero-copy h2 {
+        font-size: 1.45rem;
     }
 
     .main-girl {
@@ -1329,4 +1354,280 @@ button {
         linear-gradient(180deg, transparent 0 60%, rgba(0, 0, 0, 0.2) 100%),
         radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.15), transparent 28%);
     pointer-events: none;
+}
+
+.icon-pill {
+    display: grid;
+    place-items: center;
+}
+
+.action-btn,
+.record-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-main {
+    display: grid;
+    gap: 1rem;
+}
+
+.page-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1rem;
+    border-radius: 28px;
+}
+
+.page-hero-copy {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+    padding: 0.2rem;
+}
+
+.page-hero-copy h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2.45rem);
+    line-height: 1.08;
+}
+
+.page-hero-copy p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.page-hero-art {
+    position: relative;
+    min-height: 18rem;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(244, 210, 122, 0.18);
+    background:
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.14), transparent 30%),
+        linear-gradient(180deg, rgba(22, 28, 52, 0.96), rgba(5, 7, 13, 0.96));
+    box-shadow:
+        inset 0 0 22px rgba(255, 255, 255, 0.03),
+        0 0 30px rgba(244, 210, 122, 0.08);
+}
+
+.page-hero-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.page-card {
+    padding: 1rem;
+    border-radius: 28px;
+    min-height: 0;
+}
+
+.page-card h3 {
+    margin: 0;
+    font-size: 1.18rem;
+}
+
+.page-card p {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+}
+
+.page-card .panel-head {
+    margin-bottom: 0.85rem;
+}
+
+.page-card-list {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.page-card-list li {
+    padding: 0.86rem 0.95rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(244, 210, 122, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.timeline {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1.2rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 0.95rem;
+    border-radius: 1.05rem;
+    border: 1px solid rgba(244, 210, 122, 0.16);
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.timeline-item.done {
+    border-color: rgba(91, 195, 255, 0.22);
+    background: rgba(91, 195, 255, 0.08);
+}
+
+.timeline-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+.timeline-item.done .timeline-dot {
+    border-color: var(--blue);
+    background: var(--blue);
+    box-shadow: 0 0 14px rgba(91, 195, 255, 0.45);
+}
+
+.timeline-meta {
+    display: grid;
+    gap: 0.12rem;
+}
+
+.timeline-meta strong {
+    font-size: 1rem;
+}
+
+.timeline-meta small {
+    color: var(--muted);
+}
+
+.toggle-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.6rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 210, 122, 0.16);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(248, 251, 255, 0.9);
+    white-space: nowrap;
+}
+
+.toggle-pill.on {
+    border-color: rgba(91, 195, 255, 0.24);
+    background: linear-gradient(180deg, rgba(91, 195, 255, 0.18), rgba(10, 18, 31, 0.85));
+}
+
+.mini-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.mini-stat {
+    padding: 0.9rem 0.95rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(244, 210, 122, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.mini-stat span {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    color: rgba(248, 251, 255, 0.68);
+    text-transform: uppercase;
+}
+
+.mini-stat strong {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 1.3rem;
+    color: var(--gold);
+}
+
+.form-stack {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.field-row {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.field-row label {
+    font-weight: 700;
+}
+
+.field-row input,
+.field-row select,
+.field-row textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.8rem 0.95rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(244, 210, 122, 0.2);
+    background: rgba(5, 7, 13, 0.78);
+    color: var(--text);
+    outline: none;
+}
+
+.field-row textarea {
+    min-height: 8rem;
+    resize: vertical;
+}
+
+.field-row input:focus,
+.field-row select:focus,
+.field-row textarea:focus {
+    border-color: rgba(91, 195, 255, 0.46);
+    box-shadow: 0 0 0 3px rgba(91, 195, 255, 0.12);
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.art-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.art-tile {
+    min-height: 11rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(244, 210, 122, 0.16);
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 28%),
+        linear-gradient(180deg, rgba(24, 30, 52, 0.92), rgba(6, 8, 15, 0.96));
+    overflow: hidden;
+}
+
+.art-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.bottom-space {
+    min-height: 1rem;
 }

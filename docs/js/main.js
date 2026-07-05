@@ -1,28 +1,43 @@
-const bubbleMessages = [
+const pageFiles = new Set([
+    'index.html',
+    'study.html',
+    'game.html',
+    'reward.html',
+    'gacha.html',
+    'history.html',
+    'settings.html'
+]);
+
+const homeMessages = [
     '今日も一緒に頑張ろうね♡',
-    'ご褒美楽しみにしてて…？',
+    'ご褒美、楽しみにしててね…？',
     '今日はスロットで運試しする？',
-    'ゲームポイント、いい感じだよ。',
-    '交換ポイントをためると選べる幅が広がるよ。'
+    '交換ポイントは大切に使おうね。',
+    'ゲームポイントもちゃんと貯めていこう。'
 ];
 
-const reelSymbols = ['7', '★', 'R', 'C', '✦', '♠', '♥'];
+const reelSymbols = ['7', 'R', 'C', '♠', '♦', '★', '◆', '◎'];
 
 const state = {
     bet: 20,
     bubbleIndex: 0,
-    spinLock: false
+    spinLock: false,
+    bubbleTimer: null
 };
 
-function setBubble(text) {
-    const bubble = document.getElementById('speechBubble');
-    if (!bubble) return;
-    bubble.textContent = text;
+function getPageFile() {
+    const file = window.location.pathname.split('/').pop();
+    return file || 'index.html';
 }
 
-function cycleBubble() {
-    state.bubbleIndex = (state.bubbleIndex + 1) % bubbleMessages.length;
-    setBubble(bubbleMessages[state.bubbleIndex]);
+function normalizeHref(href) {
+    if (!href || href === '#') return '';
+    try {
+        const url = new URL(href, window.location.href);
+        return url.pathname.split('/').pop() || 'index.html';
+    } catch {
+        return '';
+    }
 }
 
 function animateGirlTap() {
@@ -32,6 +47,18 @@ function animateGirlTap() {
     void wrap.offsetWidth;
     wrap.classList.add('sparkle');
     window.setTimeout(() => wrap.classList.remove('sparkle'), 380);
+}
+
+function setBubble(text) {
+    const bubble = document.getElementById('speechBubble');
+    if (!bubble) return;
+    bubble.textContent = text;
+}
+
+function rotateBubble() {
+    if (!homeMessages.length) return;
+    state.bubbleIndex = (state.bubbleIndex + 1) % homeMessages.length;
+    setBubble(homeMessages[state.bubbleIndex]);
 }
 
 function updateBet(delta) {
@@ -47,18 +74,21 @@ function spinReels() {
     const reels = Array.from(document.querySelectorAll('[data-reel]'));
     const btn = document.getElementById('spinButton');
     animateGirlTap();
-    setBubble('スロット、いくよ…！');
+    setBubble('スピン開始。結果を見てみよう。');
 
     reels.forEach((reel, index) => {
-        reel.animate([
-            { transform: 'translateY(0) scale(1)', filter: 'blur(0px)' },
-            { transform: 'translateY(-18px) scale(1.06)', filter: 'blur(1px)' },
-            { transform: 'translateY(0) scale(1)', filter: 'blur(0px)' }
-        ], {
-            duration: 650 + index * 120,
-            iterations: 1,
-            easing: 'cubic-bezier(.2,.85,.2,1)'
-        });
+        reel.animate(
+            [
+                { transform: 'translateY(0) scale(1)', filter: 'blur(0px)' },
+                { transform: 'translateY(-18px) scale(1.06)', filter: 'blur(1px)' },
+                { transform: 'translateY(0) scale(1)', filter: 'blur(0px)' }
+            ],
+            {
+                duration: 650 + index * 120,
+                iterations: 1,
+                easing: 'cubic-bezier(.2,.85,.2,1)'
+            }
+        );
     });
 
     window.setTimeout(() => {
@@ -69,21 +99,41 @@ function spinReels() {
         });
 
         const win = Math.random() > 0.55;
-        setBubble(win ? 'キラッと当たり！今日は運がいいね♡' : '惜しい…でも次はもっといけるよ。');
+        setBubble(win ? 'キラッと揃った。今日はいい流れだね。' : '惜しい。でも次はもう少し狙えそう。');
         if (btn) btn.textContent = win ? 'JACKPOT' : 'SPIN';
 
         state.spinLock = false;
     }, 980);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function setActiveNavigation() {
+    const current = getPageFile();
+    document.querySelectorAll('.side-item, .bottom-nav-item').forEach((link) => {
+        const target = normalizeHref(link.getAttribute('href'));
+        const isActive = pageFiles.has(target) && target === current;
+        link.classList.toggle('active', isActive);
+        if (isActive) {
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
+        }
+    });
+}
+
+function setupHomePage() {
     const messagePool = document.getElementById('bubbleMessages');
     if (messagePool) {
-        const messages = Array.from(messagePool.querySelectorAll('[data-message]')).map((node) => node.textContent || '');
+        const messages = Array.from(messagePool.querySelectorAll('[data-message]'))
+            .map((node) => node.textContent || '')
+            .filter(Boolean);
+
         if (messages.length) {
             state.bubbleIndex = 0;
             setBubble(messages[0]);
-            window.setInterval(() => {
+            if (state.bubbleTimer) {
+                window.clearInterval(state.bubbleTimer);
+            }
+            state.bubbleTimer = window.setInterval(() => {
                 state.bubbleIndex = (state.bubbleIndex + 1) % messages.length;
                 setBubble(messages[state.bubbleIndex]);
                 animateGirlTap();
@@ -107,16 +157,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainGirl) {
         mainGirl.addEventListener('click', () => {
             animateGirlTap();
-            cycleBubble();
+            rotateBubble();
         });
     }
+}
+
+function setupPills() {
+    document.querySelectorAll('.toggle-pill[data-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const isOn = button.classList.toggle('on');
+            button.setAttribute('aria-pressed', String(isOn));
+            button.textContent = isOn ? 'ON' : 'OFF';
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setActiveNavigation();
+    setupHomePage();
+    setupPills();
 
     document.querySelectorAll('.bottom-nav-item, .side-item, .icon-pill').forEach((element) => {
         element.addEventListener('click', (event) => {
-            if (element.getAttribute('href') === '#') {
+            const href = element.getAttribute('href');
+            if (href === '#') {
                 event.preventDefault();
             }
-            animateGirlTap();
+            if (getPageFile() === 'index.html') {
+                animateGirlTap();
+            }
         });
     });
 });

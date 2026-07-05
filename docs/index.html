@@ -6,7 +6,7 @@
     <title>Reward Casino Study</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="home">
     <div class="page-glow page-glow-a"></div>
     <div class="page-glow page-glow-b"></div>
     <div class="sparkles" aria-hidden="true"></div>
@@ -22,23 +22,23 @@
             </div>
 
             <nav class="side-nav" aria-label="サイドメニュー">
-                <a class="side-item active" href="#"><span class="side-icon">⌂</span><span>ダッシュボード</span></a>
-                <a class="side-item" href="#"><span class="side-icon">✎</span><span>勉強記録</span></a>
-                <a class="side-item" href="#"><span class="side-icon">✦</span><span>ゲーム</span></a>
-                <a class="side-item" href="#"><span class="side-icon">◈</span><span>ご褒美交換</span></a>
-                <a class="side-item" href="#"><span class="side-icon">◎</span><span>ガチャ</span></a>
-                <a class="side-item" href="#"><span class="side-icon">☰</span><span>ポイント履歴</span></a>
-                <a class="side-item" href="#"><span class="side-icon">⚙</span><span>設定</span></a>
+                <a class="side-item" href="index.html"><span class="side-icon">⌂</span><span>ダッシュボード</span></a>
+                <a class="side-item" href="study.html"><span class="side-icon">✎</span><span>勉強記録</span></a>
+                <a class="side-item" href="game.html"><span class="side-icon">♠</span><span>ゲーム</span></a>
+                <a class="side-item" href="reward.html"><span class="side-icon">◆</span><span>ご褒美交換</span></a>
+                <a class="side-item" href="gacha.html"><span class="side-icon">✦</span><span>ガチャ</span></a>
+                <a class="side-item" href="history.html"><span class="side-icon">◌</span><span>ポイント履歴</span></a>
+                <a class="side-item" href="settings.html"><span class="side-icon">⚙</span><span>設定</span></a>
             </nav>
         </aside>
 
-        <main class="main">
+        <main class="main page-main">
             <header class="topbar glass-panel">
                 <div class="title-block">
                     <div class="app-badge">RCS</div>
                     <div>
-                        <p class="eyebrow">Reward Casino Study</p>
-                        <h2>Casino Home</h2>
+                        <p class="eyebrow">High-end casino × study management</p>
+                        <h2>Reward Casino Study</h2>
                     </div>
                 </div>
 
@@ -52,15 +52,19 @@
                         <strong id="exchangePoints">320</strong>
                     </div>
                     <div class="status-chip">
-                        <span class="chip-label">ユーザー名</span>
+                        <span class="chip-label">ユーザー</span>
                         <strong>yae</strong>
                     </div>
                     <div class="status-chip">
                         <span class="chip-label">レベル</span>
                         <strong>Lv. 18</strong>
                     </div>
-                    <button class="icon-pill" type="button" aria-label="通知">🔔</button>
-                    <button class="icon-pill" type="button" aria-label="設定">⚙</button>
+                    <a class="icon-pill" href="history.html" aria-label="通知">
+                        ⌁
+                    </a>
+                    <a class="icon-pill" href="settings.html" aria-label="設定">
+                        ⚙
+                    </a>
                 </div>
             </header>
 
@@ -76,9 +80,9 @@
                     </div>
 
                     <div class="hero-tags">
-                        <span>夜のラウンジ</span>
-                        <span>高級感</span>
-                        <span>学習管理</span>
+                        <span>ゲームポイントを貯める</span>
+                        <span>交換ポイントでご褒美</span>
+                        <span>学習ログも管理</span>
                     </div>
                 </div>
 
@@ -95,8 +99,8 @@
 
                     <div class="slot-window">
                         <div class="reel" data-reel>7</div>
-                        <div class="reel" data-reel>★</div>
                         <div class="reel" data-reel>R</div>
+                        <div class="reel" data-reel>C</div>
                     </div>
 
                     <div class="bet-row">
@@ -159,41 +163,41 @@
                         </article>
                     </div>
 
-                    <button class="record-btn" type="button">記録する</button>
+                    <a class="record-btn" href="study.html">記録する</a>
                 </section>
             </section>
 
             <section class="feature-grid">
                 <article class="feature-card glass-panel gold-frame">
                     <div class="feature-head">
-                        <div class="feature-badge">①</div>
+                        <div class="feature-badge">1</div>
                         <div>
                             <h3>キャラガチャ</h3>
-                            <p>交換ポイントで案内役GET</p>
+                            <p>交換ポイントで案内役を入手</p>
                         </div>
                     </div>
                     <div class="feature-art card-art card-art-girl" aria-hidden="true"></div>
-                    <button class="action-btn" type="button">ガチャる</button>
+                    <a class="action-btn" href="gacha.html">ガチャる</a>
                 </article>
 
                 <article class="feature-card glass-panel gold-frame">
                     <div class="feature-head">
-                        <div class="feature-badge">②</div>
+                        <div class="feature-badge">2</div>
                         <div>
                             <h3>ポイントガチャ</h3>
                             <p>交換ポイントを増やすチャンス</p>
                         </div>
                     </div>
                     <div class="feature-art card-art card-art-treasure" aria-hidden="true"></div>
-                    <button class="action-btn" type="button">ガチャる</button>
+                    <a class="action-btn" href="gacha.html#point-gacha">ガチャる</a>
                 </article>
 
                 <article class="feature-card glass-panel gold-frame">
                     <div class="feature-head">
-                        <div class="feature-badge">③</div>
+                        <div class="feature-badge">3</div>
                         <div>
                             <h3>ご褒美交換</h3>
-                            <p>一覧表示</p>
+                            <p>欲しいご褒美を一覧から選ぶ</p>
                         </div>
                     </div>
                     <ul class="reward-list">
@@ -201,7 +205,7 @@
                         <li>ゲーム時間</li>
                         <li>お小遣い</li>
                     </ul>
-                    <button class="action-btn" type="button">交換ボタン</button>
+                    <a class="action-btn" href="reward.html">交換する</a>
                 </article>
             </section>
 
@@ -209,7 +213,7 @@
                 <div class="guide-strip-head">
                     <div>
                         <p class="eyebrow">Guide Characters</p>
-                        <h3>案内役キャラクター - ガチャで変更できるよ♡</h3>
+                        <h3>案内役キャラクターを差し替えやすい構成</h3>
                     </div>
                     <div class="guide-strip-note">現在の案内役</div>
                 </div>
@@ -218,7 +222,7 @@
                     <article class="guide-card guide-card-active">
                         <div class="guide-card-badge">現在</div>
                         <div class="guide-portrait guide-portrait-image">
-                            <img src="maingirl.png" alt="現在の案内役" />
+                            <img src="maingirl.png" alt="現在の案内役">
                         </div>
                         <h4>プリンセス</h4>
                     </article>
@@ -235,34 +239,34 @@
                     <article class="guide-card">
                         <div class="guide-card-badge">SSR</div>
                         <div class="guide-portrait guide-portrait-rose"></div>
-                        <h4>制服バニー</h4>
+                        <h4>カジノ案内人</h4>
                     </article>
                     <article class="guide-card">
                         <div class="guide-card-badge">SR</div>
                         <div class="guide-portrait guide-portrait-pink"></div>
-                        <h4>ナースバニー</h4>
+                        <h4>ネオンガイド</h4>
                     </article>
                 </div>
             </section>
         </main>
     </div>
 
-    <nav class="bottom-nav glass-panel" aria-label="固定ナビゲーション">
-        <a href="#" class="bottom-nav-item active"><span>⌂</span><small>ホーム</small></a>
-        <a href="#" class="bottom-nav-item"><span>✎</span><small>勉強</small></a>
-        <a href="#" class="bottom-nav-item"><span>✦</span><small>ゲーム</small></a>
-        <a href="#" class="bottom-nav-item"><span>◈</span><small>ご褒美</small></a>
-        <a href="#" class="bottom-nav-item"><span>◎</span><small>ガチャ</small></a>
-        <a href="#" class="bottom-nav-item"><span>☰</span><small>履歴</small></a>
-        <a href="#" class="bottom-nav-item"><span>⚙</span><small>設定</small></a>
+    <nav class="bottom-nav glass-panel" aria-label="ボトムナビゲーション">
+        <a href="index.html" class="bottom-nav-item"><span>⌂</span><small>ホーム</small></a>
+        <a href="study.html" class="bottom-nav-item"><span>✎</span><small>勉強</small></a>
+        <a href="game.html" class="bottom-nav-item"><span>♠</span><small>ゲーム</small></a>
+        <a href="reward.html" class="bottom-nav-item"><span>◆</span><small>ご褒美</small></a>
+        <a href="gacha.html" class="bottom-nav-item"><span>✦</span><small>ガチャ</small></a>
+        <a href="history.html" class="bottom-nav-item"><span>◌</span><small>履歴</small></a>
+        <a href="settings.html" class="bottom-nav-item"><span>⚙</span><small>設定</small></a>
     </nav>
 
     <template id="bubbleMessages">
         <div data-message>今日も一緒に頑張ろうね♡</div>
-        <div data-message>ご褒美楽しみにしてて…？</div>
+        <div data-message>ご褒美、楽しみにしててね…？</div>
         <div data-message>今日はスロットで運試しする？</div>
-        <div data-message>ゲームポイント、いい感じだよ。</div>
-        <div data-message>交換ポイントをためると選べる幅が広がるよ。</div>
+        <div data-message>ゲームポイントも貯めていこう。</div>
+        <div data-message>交換ポイントは大切に使おうね。</div>
     </template>
 
     <script src="js/main.js"></script>
