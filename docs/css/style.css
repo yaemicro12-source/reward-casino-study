@@ -1561,3 +1561,71 @@ button {
 .bottom-space {
     min-height: 1rem;
 }
+
+/* ===== キャラ・テーブル配置だけ追加 ===== */
+
+.hero-left {
+  position: relative;
+  overflow: visible;
+  z-index: 4;
+}
+
+/* テーブル＋女の子専用レイヤー */
+.hero-character-layer {
+  position: absolute;
+  left: -4%;
+  bottom: -2%;
+  width: 115%;
+  height: 92%;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* テーブル：女の子の下 */
+.main-table {
+  position: absolute;
+  left: 9%;
+  bottom: 0;
+  width: 96%;
+  height: auto;
+  z-index: 6;
+}
+
+/* 女の子：テーブルの上 */
+.main-bunny {
+  position: absolute;
+  left: 0;
+  bottom: 8%;
+  width: 74%;
+  height: auto;
+  z-index: 7;
+  animation: bunnyIdle 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+/* 女の子だけ動かす */
+@keyframes bunnyIdle {
+  0%, 100% {
+    transform: translateY(0) rotate(-0.3deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.3deg);
+  }
+}
+
+/* 下部カード類はキャラより前面 */
+.guide-strip,
+.feature-grid,
+.bottom-nav {
+  position: relative;
+  z-index: 10;
+}
+
+/* スロット・勉強状況などはテーブルより奥 */
+.slot-card,
+.study-card,
+.topbar,
+.sidebar {
+  position: relative;
+  z-index: 5;
+}
