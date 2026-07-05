@@ -1176,7 +1176,7 @@ button {
     }
 
     .main-bunny {
-        height: 110%;
+        width: min(82%, 30rem);
     }
 
     .feature-grid .feature-card:last-child {
@@ -1223,7 +1223,7 @@ button {
     }
 
     .main-bunny {
-        height: 106%;
+        width: min(88%, 24rem);
     }
 
     .page-hero,
@@ -1620,9 +1620,10 @@ button {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: auto;
-  height: 112%;
-  max-width: 100%;
+  width: min(78%, 34rem);
+  height: auto;
+  max-width: none;
+  display: block;
   z-index: 7;
   animation: bunnyIdle 3s ease-in-out infinite;
   transform-origin: center bottom;
