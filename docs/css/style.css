@@ -395,7 +395,15 @@ button {
     pointer-events: none;
 }
 
-.stage-table {
+.guide-scene {
+    position: relative;
+    min-height: clamp(36rem, 72vh, 58rem);
+    width: 100%;
+    overflow: visible;
+    z-index: 2;
+}
+
+.casino-table {
     position: absolute;
     left: 50%;
     bottom: 0.25rem;
@@ -407,41 +415,19 @@ button {
     filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.35));
 }
 
-.main-girl-wrap {
-    position: relative;
-    display: grid;
-    place-items: end center;
-    min-height: 0;
-    width: 100%;
-    z-index: 3;
-    isolation: isolate;
-    filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.46));
-}
-
-.main-girl-wrap::after {
-    content: "";
-    position: absolute;
-    width: 88%;
-    height: 14%;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(244, 210, 122, 0.28), transparent 68%);
-    filter: blur(18px);
-    z-index: -1;
-}
-
 .main-girl {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
     width: min(118%, 50rem);
     height: auto;
     max-height: 100%;
     object-fit: contain;
     translate: -6% 0;
-    position: relative;
     z-index: 3;
     transform-origin: 50% 82%;
     filter: saturate(1.04) contrast(1.03);
+    cursor: pointer;
     animation:
         girlFloat 8s ease-in-out infinite,
         girlBreathe 5.8s ease-in-out infinite,
@@ -449,7 +435,7 @@ button {
         girlTilt 14s ease-in-out infinite;
 }
 
-.main-girl-wrap.sparkle .main-girl {
+.main-girl.tap {
     animation:
         girlFloat 8s ease-in-out infinite,
         girlBreathe 5.8s ease-in-out infinite,
@@ -458,28 +444,11 @@ button {
         tapPulse 0.34s ease-out 1;
 }
 
-.main-girl-wrap.sparkle .main-girl-sheen {
-    opacity: 1;
-    animation: sheenFlash 0.6s ease-out 1;
-}
-
-.main-girl-sheen {
-    position: absolute;
-    inset: 8% 12% 6% 12%;
-    border-radius: 50% 50% 44% 44%;
-    background:
-        linear-gradient(120deg, transparent 0 38%, rgba(255, 255, 255, 0.52) 45%, transparent 54%),
-        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.16), transparent 54%);
-    mix-blend-mode: screen;
-    opacity: 0;
-    filter: blur(2px);
-    pointer-events: none;
-}
-
 .speech-bubble {
-    position: relative;
-    align-self: end;
-    max-width: min(39rem, 100%);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    max-width: min(34rem, 54%);
     width: fit-content;
     padding: 1.05rem 1.2rem;
     border-radius: 1.4rem;
@@ -495,6 +464,7 @@ button {
     font-size: 1rem;
     line-height: 1.7;
     z-index: 4;
+    box-sizing: border-box;
 }
 
 .speech-bubble::after {
@@ -1118,7 +1088,6 @@ button {
     color: #fff1b9;
 }
 
-.main-girl-wrap,
 .speech-bubble,
 .slot-card,
 .study-card,
@@ -1282,7 +1251,11 @@ button {
         padding: 0.8rem;
     }
 
-    .stage-table {
+    .guide-scene {
+        min-height: 26rem;
+    }
+
+    .casino-table {
         width: 112%;
         bottom: 0.15rem;
     }
@@ -1298,12 +1271,15 @@ button {
 
     .main-girl {
         width: 100%;
-        translate: 0 0;
+        left: 50%;
+        translate: -50% 0;
         max-height: 42rem;
     }
 
     .speech-bubble {
-        width: 100%;
+        left: 0.5rem;
+        right: 0.5rem;
+        width: auto;
         font-size: 0.96rem;
     }
 

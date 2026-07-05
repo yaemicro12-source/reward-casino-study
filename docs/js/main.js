@@ -41,12 +41,12 @@ function normalizeHref(href) {
 }
 
 function animateGirlTap() {
-    const wrap = document.getElementById('mainGirlWrap');
-    if (!wrap) return;
-    wrap.classList.remove('sparkle');
-    void wrap.offsetWidth;
-    wrap.classList.add('sparkle');
-    window.setTimeout(() => wrap.classList.remove('sparkle'), 380);
+    const girl = document.getElementById('mainGirl');
+    if (!girl) return;
+    girl.classList.remove('tap');
+    void girl.offsetWidth;
+    girl.classList.add('tap');
+    window.setTimeout(() => girl.classList.remove('tap'), 380);
 }
 
 function setBubble(text) {
