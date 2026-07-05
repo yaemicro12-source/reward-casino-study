@@ -403,11 +403,11 @@ button {
     z-index: 2;
 }
 
-.casino-table {
+.counter {
     position: absolute;
-    left: 50%;
-    bottom: 0.25rem;
-    width: min(100%, 58rem);
+    left: 44%;
+    bottom: 0.4rem;
+    width: min(120%, 62rem);
     height: auto;
     transform: translateX(-50%);
     z-index: 2;
@@ -419,11 +419,11 @@ button {
     position: absolute;
     left: 50%;
     bottom: 0;
-    width: min(118%, 50rem);
+    width: min(110%, 50rem);
     height: auto;
     max-height: 100%;
     object-fit: contain;
-    translate: -6% 0;
+    translate: -8% 0;
     z-index: 3;
     transform-origin: 50% 82%;
     filter: saturate(1.04) contrast(1.03);
@@ -1255,9 +1255,10 @@ button {
         min-height: 26rem;
     }
 
-    .casino-table {
-        width: 112%;
-        bottom: 0.15rem;
+    .counter {
+        left: 43%;
+        width: 118%;
+        bottom: 0.1rem;
     }
 
     .page-hero,
@@ -1270,7 +1271,7 @@ button {
     }
 
     .main-girl {
-        width: 100%;
+        width: 102%;
         left: 50%;
         translate: -50% 0;
         max-height: 42rem;
